@@ -1,4 +1,5 @@
 {
+  "api_path_prefix": "/bo3/",
   "async_class_name": "AsyncBO3Client",
   "class_name": "BO3Client",
   "contract_revision": "sha256:873a7ac103d7bfe056abcdb6d8711a12c34dc8878206f4fb549647432ca16361",

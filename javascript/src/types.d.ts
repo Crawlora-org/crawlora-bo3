@@ -806,9 +806,9 @@ export interface ModelBo3EconomyBaselineResponse {
 }
 
 export interface ModelBo3EconomyCell {
-  "enemy_level"?: "-1" | "0" | "1" | "2";
+  "enemy_level"?: -1 | 0 | 1 | 2;
   "rounds"?: number;
-  "team_level"?: "-1" | "0" | "1" | "2";
+  "team_level"?: -1 | 0 | 1 | 2;
   "win_rate"?: number;
   "wins"?: number;
 }
