@@ -1,0 +1,5762 @@
+{
+  "basePath": "/api/v1",
+  "definitions": {
+    "app.Response": {
+      "description": "The Response struct is used for wrapping the API response with a code, message, and data.",
+      "properties": {
+        "code": {
+          "description": "Code is the HTTP status code or a custom code used to indicate the result of the request\n@example 200",
+          "type": "integer"
+        },
+        "data": {
+          "description": "Data is the response data (can be any object or null)\n@example {\"id\": 1, \"name\": \"John Doe\"}"
+        },
+        "msg": {
+          "description": "Msg is the message that describes the result of the request\n@example \"Request successful\""
+        }
+      },
+      "type": "object"
+    },
+    "bo3.Achievement": {
+      "properties": {
+        "date": {
+          "example": "2021-12-12",
+          "type": "string"
+        },
+        "title": {
+          "example": "winner",
+          "type": "string"
+        },
+        "tournament_id": {
+          "example": 408,
+          "type": "integer"
+        },
+        "tournament_name": {
+          "type": "string"
+        },
+        "tournament_slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.EarningPlayer": {
+      "properties": {
+        "id": {
+          "example": 23237,
+          "type": "integer"
+        },
+        "is_coach": {
+          "example": false,
+          "type": "boolean"
+        },
+        "nickname": {
+          "example": "sh1ro",
+          "type": "string"
+        },
+        "six_month_avg_rating": {
+          "example": 6.57,
+          "type": "number"
+        },
+        "slug": {
+          "example": "sh1ro",
+          "type": "string"
+        },
+        "total_prize_usd": {
+          "example": 1276162,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.EconomyBaselineResponse": {
+      "properties": {
+        "cells": {
+          "items": {
+            "$ref": "#/definitions/bo3.EconomyCell"
+          },
+          "type": "array"
+        },
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.EconomyCell": {
+      "properties": {
+        "enemy_level": {
+          "enum": [
+            -1,
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "rounds": {
+          "example": 309119,
+          "type": "integer"
+        },
+        "team_level": {
+          "enum": [
+            -1,
+            0,
+            1,
+            2
+          ],
+          "example": 2,
+          "type": "integer"
+        },
+        "win_rate": {
+          "type": "number"
+        },
+        "wins": {
+          "example": 154561,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.FeedCategory": {
+      "properties": {
+        "id": {
+          "example": 38,
+          "type": "integer"
+        },
+        "title": {
+          "example": "Predictions",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.ForumCategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/bo3.ForumCategory"
+          },
+          "type": "array"
+        },
+        "count": {
+          "example": 3,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.ForumCategory": {
+      "properties": {
+        "id": {
+          "example": 1,
+          "type": "integer"
+        },
+        "slug": {
+          "example": "cs-2",
+          "type": "string"
+        },
+        "title": {
+          "example": "CS2",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.ForumFeedResponse": {
+      "properties": {
+        "category": {
+          "example": 4,
+          "type": "integer"
+        },
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "sort": {
+          "enum": [
+            "activity",
+            "newest",
+            "comments",
+            "rating"
+          ],
+          "example": "activity",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "threads": {
+          "items": {
+            "$ref": "#/definitions/bo3.ForumThread"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 221,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.ForumThread": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/bo3.PersonRef"
+        },
+        "category": {
+          "example": "CS2",
+          "type": "string"
+        },
+        "category_id": {
+          "example": 1,
+          "type": "integer"
+        },
+        "comments": {
+          "example": 6,
+          "type": "integer"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "example": 1244,
+          "type": "integer"
+        },
+        "last_activity_at": {
+          "type": "string"
+        },
+        "pinned": {
+          "example": false,
+          "type": "boolean"
+        },
+        "rating": {
+          "example": 0,
+          "type": "integer"
+        },
+        "slug": {
+          "example": "where-is-the-pick-ems",
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.GameRow": {
+      "properties": {
+        "begin_at": {
+          "type": "string"
+        },
+        "duration_seconds": {
+          "example": 2141.7,
+          "type": "number"
+        },
+        "id": {
+          "example": 190595,
+          "type": "integer"
+        },
+        "loser_name": {
+          "type": "string"
+        },
+        "loser_score": {
+          "example": 2,
+          "type": "integer"
+        },
+        "map": {
+          "example": "inferno",
+          "type": "string"
+        },
+        "number": {
+          "example": 1,
+          "type": "integer"
+        },
+        "rounds": {
+          "items": {
+            "$ref": "#/definitions/bo3.RoundRow"
+          },
+          "type": "array"
+        },
+        "rounds_count": {
+          "example": 15,
+          "type": "integer"
+        },
+        "side_results": {
+          "items": {
+            "$ref": "#/definitions/bo3.SideResult"
+          },
+          "type": "array"
+        },
+        "state": {
+          "example": "done",
+          "type": "string"
+        },
+        "status": {
+          "example": "finished",
+          "type": "string"
+        },
+        "winner_name": {
+          "type": "string"
+        },
+        "winner_score": {
+          "example": 13,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.Insight": {
+      "properties": {
+        "facts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "team": {
+          "example": "Spirit",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.LeaderboardResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "from": {
+          "example": "2026-04-28",
+          "type": "string"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "min_games_count": {
+          "example": 186,
+          "type": "integer"
+        },
+        "next_offset": {
+          "example": 20,
+          "type": "integer"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "order": {
+          "enum": [
+            "desc",
+            "asc"
+          ],
+          "example": "desc",
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/bo3.TopPlayer"
+          },
+          "type": "array"
+        },
+        "sort": {
+          "enum": [
+            "rating",
+            "kd",
+            "kills",
+            "damage",
+            "assists",
+            "headshots",
+            "games",
+            "rounds"
+          ],
+          "example": "rating",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "tier": {
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "example": "s",
+          "type": "string"
+        },
+        "to": {
+          "example": "2026-10-28",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.Links": {
+      "properties": {
+        "facebook": {
+          "type": "string"
+        },
+        "instagram": {
+          "type": "string"
+        },
+        "twitch": {
+          "type": "string"
+        },
+        "twitter": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "youtube": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.MVPRow": {
+      "properties": {
+        "article_url": {
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "id": {
+          "example": 45,
+          "type": "integer"
+        },
+        "player": {
+          "$ref": "#/definitions/bo3.PersonRef"
+        },
+        "team": {
+          "$ref": "#/definitions/bo3.TransferTeam"
+        },
+        "tournament": {
+          "$ref": "#/definitions/bo3.TournamentRef"
+        },
+        "type": {
+          "example": "mvp",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.MapRow": {
+      "properties": {
+        "begin_at": {
+          "type": "string"
+        },
+        "loser_score": {
+          "example": 2,
+          "type": "integer"
+        },
+        "map": {
+          "example": "nuke",
+          "type": "string"
+        },
+        "number": {
+          "example": 1,
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "upcoming",
+            "current",
+            "finished"
+          ],
+          "example": "finished",
+          "type": "string"
+        },
+        "winner_score": {
+          "example": 13,
+          "type": "integer"
+        },
+        "winner_team_id": {
+          "example": 654,
+          "type": "integer"
+        },
+        "winner_team_name": {
+          "example": "Spirit",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.MatchGamesResponse": {
+      "properties": {
+        "count": {
+          "example": 2,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "games": {
+          "items": {
+            "$ref": "#/definitions/bo3.GameRow"
+          },
+          "type": "array"
+        },
+        "match_id": {
+          "example": 132243,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.MatchHistoryResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/bo3.MatchSummary"
+          },
+          "type": "array"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "status": {
+          "example": "finished,defwin",
+          "type": "string"
+        },
+        "total": {
+          "example": 76604,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.MatchInfo": {
+      "properties": {
+        "best_of": {
+          "example": 3,
+          "type": "integer"
+        },
+        "end_time": {
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "lan",
+            "online"
+          ],
+          "example": "lan",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "id": {
+          "example": 132241,
+          "type": "integer"
+        },
+        "insights": {
+          "items": {
+            "$ref": "#/definitions/bo3.Insight"
+          },
+          "type": "array"
+        },
+        "live_coverage": {
+          "example": true,
+          "type": "boolean"
+        },
+        "maps": {
+          "items": {
+            "$ref": "#/definitions/bo3.MapRow"
+          },
+          "type": "array"
+        },
+        "prediction": {
+          "$ref": "#/definitions/bo3.Prediction"
+        },
+        "round": {
+          "example": "Round 4",
+          "type": "string"
+        },
+        "slug": {
+          "example": "spirit-vs-mouz-cs2-27-10-2026",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "stage": {
+          "example": "PGL Masters Bucharest 2026 Group Stage",
+          "type": "string"
+        },
+        "stars": {
+          "example": 4,
+          "type": "integer"
+        },
+        "start_time": {
+          "example": "2026-10-27T14:35:00Z",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "upcoming",
+            "current",
+            "finished",
+            "defwin",
+            "canceled",
+            "postponed"
+          ],
+          "example": "current",
+          "type": "string"
+        },
+        "streams": {
+          "items": {
+            "$ref": "#/definitions/bo3.Stream"
+          },
+          "type": "array"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/bo3.Team"
+          },
+          "type": "array"
+        },
+        "tier": {
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "example": "s",
+          "type": "string"
+        },
+        "tournament": {
+          "$ref": "#/definitions/bo3.TournamentRef"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.MatchPlayerStats": {
+      "properties": {
+        "multikills": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "nickname": {
+          "example": "ZywOo",
+          "type": "string"
+        },
+        "opponent": {
+          "example": "Natus Vincere",
+          "type": "string"
+        },
+        "player_id": {
+          "example": 18452,
+          "type": "integer"
+        },
+        "stats": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "team": {
+          "example": "Team Vitality",
+          "type": "string"
+        },
+        "win": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.MatchPlayersResponse": {
+      "properties": {
+        "count": {
+          "example": 10,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/bo3.MatchPlayerStats"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "example": "vitality-vs-natus-vincere-27-10-2026",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.MatchSummary": {
+      "properties": {
+        "best_of": {
+          "example": 3,
+          "type": "integer"
+        },
+        "end_time": {
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "id": {
+          "example": 132241,
+          "type": "integer"
+        },
+        "live_coverage": {
+          "example": true,
+          "type": "boolean"
+        },
+        "maps": {
+          "items": {
+            "$ref": "#/definitions/bo3.MapRow"
+          },
+          "type": "array"
+        },
+        "prediction": {
+          "$ref": "#/definitions/bo3.Prediction"
+        },
+        "slug": {
+          "example": "spirit-vs-mouz-cs2-27-10-2026",
+          "type": "string"
+        },
+        "stars": {
+          "example": 4,
+          "type": "integer"
+        },
+        "start_time": {
+          "example": "2026-10-27T14:35:00Z",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "upcoming",
+            "current",
+            "finished",
+            "defwin",
+            "canceled",
+            "postponed"
+          ],
+          "example": "current",
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/bo3.Team"
+          },
+          "type": "array"
+        },
+        "tier": {
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "example": "s",
+          "type": "string"
+        },
+        "tournament": {
+          "$ref": "#/definitions/bo3.TournamentRef"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.NewsCategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/bo3.FeedCategory"
+          },
+          "type": "array"
+        },
+        "count": {
+          "example": 15,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.NewsFeedResponse": {
+      "properties": {
+        "category": {
+          "example": 38,
+          "type": "integer"
+        },
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/bo3.NewsItem"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "locale": {
+          "enum": [
+            "en",
+            "ru",
+            "pt",
+            "es",
+            "de",
+            "fr",
+            "tr",
+            "pl",
+            "id",
+            "vi",
+            "ja",
+            "ko",
+            "ua",
+            "ms",
+            "tl",
+            "da"
+          ],
+          "example": "en",
+          "type": "string"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "section": {
+          "enum": [
+            "news",
+            "article",
+            "wiki",
+            "predictions",
+            "reviews"
+          ],
+          "example": "news",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "tag": {
+          "example": "team-liquid",
+          "type": "string"
+        },
+        "total": {
+          "example": 4401,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.NewsItem": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/bo3.PersonRef"
+        },
+        "category": {
+          "example": "News",
+          "type": "string"
+        },
+        "category_id": {
+          "example": 1,
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "id": {
+          "example": 41867,
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "likes": {
+          "example": 0,
+          "type": "integer"
+        },
+        "pinned": {
+          "example": false,
+          "type": "boolean"
+        },
+        "published_at": {
+          "type": "string"
+        },
+        "slug": {
+          "example": "spirit-navi-furia-liquid-pgl-masters-bucharest-2026",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/definitions/bo3.TagRef"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.PersonRef": {
+      "properties": {
+        "id": {
+          "example": 14,
+          "type": "integer"
+        },
+        "nickname": {
+          "example": "Pers1valle",
+          "type": "string"
+        },
+        "slug": {
+          "example": "pers1valle",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.PlayerInfo": {
+      "properties": {
+        "achievement_count": {
+          "example": 30,
+          "type": "integer"
+        },
+        "achievements": {
+          "items": {
+            "$ref": "#/definitions/bo3.Achievement"
+          },
+          "type": "array"
+        },
+        "alternative_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "birthday": {
+          "example": "2007-01-25",
+          "type": "string"
+        },
+        "country": {
+          "example": "Russian Federation",
+          "type": "string"
+        },
+        "country_code": {
+          "example": "RU",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "id": {
+          "example": 31349,
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "is_coach": {
+          "example": false,
+          "type": "boolean"
+        },
+        "joined_team_at": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "links": {
+          "$ref": "#/definitions/bo3.Links"
+        },
+        "nickname": {
+          "example": "donk",
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "six_month_avg_rating": {
+          "example": 7.35,
+          "type": "number"
+        },
+        "slug": {
+          "example": "donk",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/bo3.TeamRef"
+        },
+        "total_prize_usd": {
+          "example": 897155,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.Prediction": {
+      "properties": {
+        "team1_score": {
+          "example": 2,
+          "type": "integer"
+        },
+        "team2_score": {
+          "example": 1,
+          "type": "integer"
+        },
+        "winner_team_id": {
+          "example": 654,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.Prize": {
+      "properties": {
+        "place": {
+          "example": "1st",
+          "type": "string"
+        },
+        "points": {
+          "type": "integer"
+        },
+        "prize_usd": {
+          "example": 200000,
+          "type": "integer"
+        },
+        "team_id": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RankedPlayer": {
+      "properties": {
+        "country_code": {
+          "example": "FR",
+          "type": "string"
+        },
+        "id": {
+          "example": 17515,
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "nickname": {
+          "example": "apEX",
+          "type": "string"
+        },
+        "rating": {
+          "example": 5.74,
+          "type": "number"
+        },
+        "slug": {
+          "example": "apex",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RankingRow": {
+      "properties": {
+        "country": {
+          "example": "France",
+          "type": "string"
+        },
+        "country_code": {
+          "example": "FR",
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Vitality",
+          "type": "string"
+        },
+        "points": {
+          "example": 1979.7194,
+          "type": "number"
+        },
+        "rank": {
+          "example": 1,
+          "type": "integer"
+        },
+        "rank_change": {
+          "example": 0,
+          "type": "integer"
+        },
+        "region": {
+          "example": "EU",
+          "type": "string"
+        },
+        "roster": {
+          "items": {
+            "$ref": "#/definitions/bo3.RankedPlayer"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "example": "vitality",
+          "type": "string"
+        },
+        "team_id": {
+          "example": 667,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RecentLine": {
+      "properties": {
+        "accuracy": {
+          "type": "number"
+        },
+        "assists": {
+          "example": 13,
+          "type": "integer"
+        },
+        "avg_kill_cost": {
+          "type": "number"
+        },
+        "damage": {
+          "example": 3526,
+          "type": "integer"
+        },
+        "deaths": {
+          "example": 23,
+          "type": "integer"
+        },
+        "equipment_value": {
+          "example": 200950,
+          "type": "integer"
+        },
+        "first_deaths": {
+          "example": 2,
+          "type": "integer"
+        },
+        "first_kills": {
+          "example": 10,
+          "type": "integer"
+        },
+        "headshot_ratio": {
+          "type": "number"
+        },
+        "headshots": {
+          "example": 15,
+          "type": "integer"
+        },
+        "hits": {
+          "example": 78,
+          "type": "integer"
+        },
+        "kills": {
+          "example": 32,
+          "type": "integer"
+        },
+        "money_saved": {
+          "example": 81700,
+          "type": "integer"
+        },
+        "multikills": {
+          "type": "number"
+        },
+        "nickname": {
+          "example": "ZywOo",
+          "type": "string"
+        },
+        "player_slug": {
+          "example": "zywoo",
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "shots": {
+          "example": 371,
+          "type": "integer"
+        },
+        "team_slug": {
+          "example": "vitality",
+          "type": "string"
+        },
+        "trade_deaths": {
+          "example": 6,
+          "type": "integer"
+        },
+        "trade_kills": {
+          "example": 4,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RecentMap": {
+      "properties": {
+        "game_id": {
+          "example": 190587,
+          "type": "integer"
+        },
+        "game_number": {
+          "example": 1,
+          "type": "integer"
+        },
+        "map": {
+          "example": "de_dust2",
+          "type": "string"
+        },
+        "won": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RecentMatch": {
+      "properties": {
+        "lines": {
+          "items": {
+            "$ref": "#/definitions/bo3.RecentLine"
+          },
+          "type": "array"
+        },
+        "maps": {
+          "items": {
+            "$ref": "#/definitions/bo3.RecentMap"
+          },
+          "type": "array"
+        },
+        "match_slug": {
+          "example": "vitality-vs-natus-vincere-27-10-2026",
+          "type": "string"
+        },
+        "opponent": {
+          "$ref": "#/definitions/bo3.TeamRef"
+        },
+        "rounds": {
+          "example": 37,
+          "type": "integer"
+        },
+        "started_at": {
+          "example": "2026-10-27T17:55:00Z",
+          "type": "string"
+        },
+        "tournament_slug": {
+          "example": "pgl-masters-bucharest-2026",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RecentMatchesResponse": {
+      "properties": {
+        "count": {
+          "example": 10,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/bo3.RecentMatch"
+          },
+          "type": "array"
+        },
+        "opponent": {
+          "type": "string"
+        },
+        "slug": {
+          "example": "vitality",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "subject": {
+          "enum": [
+            "team",
+            "player"
+          ],
+          "example": "team",
+          "type": "string"
+        },
+        "tournament": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RecordRow": {
+      "properties": {
+        "average": {
+          "example": 0.18,
+          "type": "number"
+        },
+        "begin_at": {
+          "type": "string"
+        },
+        "country_code": {
+          "example": "BR",
+          "type": "string"
+        },
+        "detail": {
+          "example": "win",
+          "type": "string"
+        },
+        "map": {
+          "example": "anubis",
+          "type": "string"
+        },
+        "match_slug": {
+          "example": "mibr-vs-eternal-fire-27-10-2026",
+          "type": "string"
+        },
+        "opponents": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "player": {
+          "$ref": "#/definitions/bo3.PersonRef"
+        },
+        "round_number": {
+          "example": 7,
+          "type": "integer"
+        },
+        "series": {
+          "example": "Stake Ranked",
+          "type": "string"
+        },
+        "side": {
+          "enum": [
+            "CT",
+            "T"
+          ],
+          "example": "T",
+          "type": "string"
+        },
+        "team_name": {
+          "example": "MIBR",
+          "type": "string"
+        },
+        "type": {
+          "example": "game_player_shots_accuracy",
+          "type": "string"
+        },
+        "unit": {
+          "example": "%",
+          "type": "string"
+        },
+        "value": {
+          "example": 0.41,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RecordsFeedResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "from": {
+          "example": "2026-04-28",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/bo3.RecordRow"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "to": {
+          "example": "2026-10-28",
+          "type": "string"
+        },
+        "total": {
+          "example": 201433,
+          "type": "integer"
+        },
+        "types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.RoundRow": {
+      "properties": {
+        "duration_seconds": {
+          "example": 91.75,
+          "type": "number"
+        },
+        "end_reason": {
+          "example": "BombDefused",
+          "type": "string"
+        },
+        "loser_score": {
+          "example": 0,
+          "type": "integer"
+        },
+        "number": {
+          "example": 1,
+          "type": "integer"
+        },
+        "winner_name": {
+          "type": "string"
+        },
+        "winner_score": {
+          "example": 1,
+          "type": "integer"
+        },
+        "winner_side": {
+          "example": "CT",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.SideResult": {
+      "properties": {
+        "loser_name": {
+          "type": "string"
+        },
+        "loser_score": {
+          "example": 2,
+          "type": "integer"
+        },
+        "loser_side": {
+          "example": "T",
+          "type": "string"
+        },
+        "order": {
+          "example": 1,
+          "type": "integer"
+        },
+        "overtime": {
+          "example": false,
+          "type": "boolean"
+        },
+        "winner_name": {
+          "type": "string"
+        },
+        "winner_score": {
+          "example": 10,
+          "type": "integer"
+        },
+        "winner_side": {
+          "example": "CT",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.SquadPlayer": {
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "id": {
+          "example": 21431,
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "is_coach": {
+          "type": "boolean"
+        },
+        "is_standin": {
+          "type": "boolean"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "nickname": {
+          "example": "max",
+          "type": "string"
+        },
+        "slug": {
+          "example": "max",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.StageRow": {
+      "properties": {
+        "end_date": {
+          "type": "string"
+        },
+        "format_type": {
+          "example": "group",
+          "type": "string"
+        },
+        "hold": {
+          "example": false,
+          "type": "boolean"
+        },
+        "id": {
+          "example": 11041,
+          "type": "integer"
+        },
+        "promotion_team_count": {
+          "example": 4,
+          "type": "integer"
+        },
+        "sequence": {
+          "example": 1,
+          "type": "integer"
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.StatsResponse": {
+      "properties": {
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "from": {
+          "example": "2026-04-28",
+          "type": "string"
+        },
+        "id": {
+          "example": 667,
+          "type": "integer"
+        },
+        "kind": {
+          "example": "general",
+          "type": "string"
+        },
+        "name": {
+          "example": "Vitality",
+          "type": "string"
+        },
+        "rows": {
+          "items": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "example": "vitality",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "stats": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "subject": {
+          "enum": [
+            "team",
+            "player"
+          ],
+          "example": "team",
+          "type": "string"
+        },
+        "to": {
+          "example": "2026-10-28",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.Stream": {
+      "properties": {
+        "language": {
+          "example": "en",
+          "type": "string"
+        },
+        "name": {
+          "example": "PGL",
+          "type": "string"
+        },
+        "official": {
+          "example": true,
+          "type": "boolean"
+        },
+        "platform": {
+          "enum": [
+            "twitch",
+            "youtube",
+            "kick",
+            "other"
+          ],
+          "example": "twitch",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.twitch.tv/pgl",
+          "type": "string"
+        },
+        "viewer_count": {
+          "example": 205,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TagRef": {
+      "properties": {
+        "id": {
+          "example": 4698,
+          "type": "integer"
+        },
+        "name": {
+          "example": "PGL Masters Bucharest 2026",
+          "type": "string"
+        },
+        "slug": {
+          "example": "pgl-masters-bucharest-2026",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.Team": {
+      "properties": {
+        "country": {
+          "example": "Russian Federation",
+          "type": "string"
+        },
+        "country_code": {
+          "example": "RU",
+          "type": "string"
+        },
+        "id": {
+          "example": 654,
+          "type": "integer"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Spirit",
+          "type": "string"
+        },
+        "rank": {
+          "example": 1,
+          "type": "integer"
+        },
+        "score": {
+          "example": 1,
+          "type": "integer"
+        },
+        "slug": {
+          "example": "spirit",
+          "type": "string"
+        },
+        "winner": {
+          "example": false,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TeamEarningsRow": {
+      "properties": {
+        "country": {
+          "example": "Russian Federation",
+          "type": "string"
+        },
+        "country_code": {
+          "example": "RU",
+          "type": "string"
+        },
+        "earnings_usd": {
+          "example": 1163188,
+          "type": "integer"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Spirit",
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/bo3.EarningPlayer"
+          },
+          "type": "array"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "region": {
+          "example": "CIS",
+          "type": "string"
+        },
+        "slug": {
+          "example": "spirit",
+          "type": "string"
+        },
+        "team_id": {
+          "example": 654,
+          "type": "integer"
+        },
+        "tournament_wins": {
+          "example": 3,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TeamInfo": {
+      "properties": {
+        "achievement_count": {
+          "example": 38,
+          "type": "integer"
+        },
+        "achievements": {
+          "items": {
+            "$ref": "#/definitions/bo3.Achievement"
+          },
+          "type": "array"
+        },
+        "acronym": {
+          "type": "string"
+        },
+        "alternative_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "country": {
+          "example": "France",
+          "type": "string"
+        },
+        "country_code": {
+          "example": "FR",
+          "type": "string"
+        },
+        "established_date": {
+          "example": "2018-08-05",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "id": {
+          "example": 667,
+          "type": "integer"
+        },
+        "links": {
+          "$ref": "#/definitions/bo3.Links"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Vitality",
+          "type": "string"
+        },
+        "rank": {
+          "example": 3,
+          "type": "integer"
+        },
+        "rank_change": {
+          "example": 0,
+          "type": "integer"
+        },
+        "region": {
+          "example": "Europe",
+          "type": "string"
+        },
+        "roster": {
+          "items": {
+            "$ref": "#/definitions/bo3.TeamMember"
+          },
+          "type": "array"
+        },
+        "six_month_earnings_usd": {
+          "type": "integer"
+        },
+        "slug": {
+          "example": "vitality",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TeamMember": {
+      "properties": {
+        "birthday": {
+          "example": "1993-02-22",
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "id": {
+          "example": 17515,
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "nickname": {
+          "example": "apEX",
+          "type": "string"
+        },
+        "six_month_avg_rating": {
+          "example": 5.74,
+          "type": "number"
+        },
+        "slug": {
+          "example": "apex",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TeamPrizeMoneyResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "from": {
+          "example": "2026-04-28",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/bo3.TeamEarningsRow"
+          },
+          "type": "array"
+        },
+        "to": {
+          "example": "2026-10-28",
+          "type": "string"
+        },
+        "total": {
+          "example": 311,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TeamRankingDatesResponse": {
+      "properties": {
+        "count": {
+          "example": 59,
+          "type": "integer"
+        },
+        "dates": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "regions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TeamRankingsResponse": {
+      "properties": {
+        "count": {
+          "example": 30,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "official": {
+          "example": true,
+          "type": "boolean"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 30,
+          "type": "integer"
+        },
+        "ranking_date": {
+          "example": "2026-10-05",
+          "type": "string"
+        },
+        "region": {
+          "example": "worldwide",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "internal",
+            "valve_official"
+          ],
+          "example": "valve_official",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/bo3.RankingRow"
+          },
+          "type": "array"
+        },
+        "total_pages": {
+          "example": 9,
+          "type": "integer"
+        },
+        "total_teams": {
+          "example": 245,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TeamRef": {
+      "properties": {
+        "id": {
+          "example": 654,
+          "type": "integer"
+        },
+        "name": {
+          "example": "Spirit",
+          "type": "string"
+        },
+        "slug": {
+          "example": "spirit",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TopPlayer": {
+      "properties": {
+        "country_code": {
+          "example": "RU",
+          "type": "string"
+        },
+        "games": {
+          "example": 96,
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "nickname": {
+          "example": "m0NESY",
+          "type": "string"
+        },
+        "player_id": {
+          "example": 25998,
+          "type": "integer"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "rounds": {
+          "example": 2146,
+          "type": "integer"
+        },
+        "slug": {
+          "example": "m0nesy",
+          "type": "string"
+        },
+        "stats": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "team_id": {
+          "example": 2713,
+          "type": "integer"
+        },
+        "team_name": {
+          "example": "Falcons",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentInfo": {
+      "properties": {
+        "city": {
+          "example": "Bucharest",
+          "type": "string"
+        },
+        "country": {
+          "example": "Romania",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "end_date": {
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "lan",
+            "online"
+          ],
+          "example": "lan",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "id": {
+          "example": 5338,
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "PGL Masters Bucharest 2026",
+          "type": "string"
+        },
+        "prize_usd": {
+          "example": 1250000,
+          "type": "integer"
+        },
+        "prizes": {
+          "items": {
+            "$ref": "#/definitions/bo3.Prize"
+          },
+          "type": "array"
+        },
+        "region": {
+          "example": "Europe",
+          "type": "string"
+        },
+        "series": {
+          "example": "PGL",
+          "type": "string"
+        },
+        "slug": {
+          "example": "pgl-masters-bucharest-2026",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "stages": {
+          "items": {
+            "$ref": "#/definitions/bo3.TournamentStage"
+          },
+          "type": "array"
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "current",
+            "upcoming",
+            "finished",
+            "canceled",
+            "postponed"
+          ],
+          "example": "current",
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/bo3.TournamentTeam"
+          },
+          "type": "array"
+        },
+        "tier": {
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "example": "s",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentListItem": {
+      "properties": {
+        "end_date": {
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "lan",
+            "online"
+          ],
+          "example": "lan",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "id": {
+          "example": 5338,
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "PGL Masters Bucharest 2026",
+          "type": "string"
+        },
+        "prize_usd": {
+          "example": 1250000,
+          "type": "integer"
+        },
+        "slug": {
+          "example": "pgl-masters-bucharest-2026",
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "current",
+            "upcoming",
+            "finished",
+            "canceled",
+            "postponed"
+          ],
+          "example": "current",
+          "type": "string"
+        },
+        "tier": {
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "example": "s",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentListResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "total": {
+          "example": 3248,
+          "type": "integer"
+        },
+        "tournaments": {
+          "items": {
+            "$ref": "#/definitions/bo3.TournamentListItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentMVPsResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "mvps": {
+          "items": {
+            "$ref": "#/definitions/bo3.MVPRow"
+          },
+          "type": "array"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "total": {
+          "example": 44,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentMapPoolResponse": {
+      "properties": {
+        "count": {
+          "example": 7,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "maps": {
+          "items": {
+            "$ref": "#/definitions/bo3.TournamentMapRow"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "example": "pgl-masters-bucharest-2026",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentMapRow": {
+      "properties": {
+        "banned_maps": {
+          "example": 0,
+          "type": "integer"
+        },
+        "ct_round_wins": {
+          "example": 156,
+          "type": "integer"
+        },
+        "ct_win_percent": {
+          "type": "integer"
+        },
+        "games": {
+          "example": 12,
+          "type": "integer"
+        },
+        "map": {
+          "example": "de_inferno",
+          "type": "string"
+        },
+        "picked_maps": {
+          "example": 0,
+          "type": "integer"
+        },
+        "rounds": {
+          "example": 270,
+          "type": "integer"
+        },
+        "t_round_wins": {
+          "example": 114,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentRef": {
+      "properties": {
+        "id": {
+          "example": 5338,
+          "type": "integer"
+        },
+        "name": {
+          "example": "PGL Masters Bucharest 2026",
+          "type": "string"
+        },
+        "prize_usd": {
+          "example": 1250000,
+          "type": "integer"
+        },
+        "slug": {
+          "example": "pgl-masters-bucharest-2026",
+          "type": "string"
+        },
+        "tier": {
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "example": "s",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentSquad": {
+      "properties": {
+        "logo_url": {
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/bo3.SquadPlayer"
+          },
+          "type": "array"
+        },
+        "team_id": {
+          "example": 324,
+          "type": "integer"
+        },
+        "team_name": {
+          "example": "9z",
+          "type": "string"
+        },
+        "team_slug": {
+          "example": "9z",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentSquadsResponse": {
+      "properties": {
+        "count": {
+          "example": 16,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "slug": {
+          "example": "pgl-masters-bucharest-2026",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "squads": {
+          "items": {
+            "$ref": "#/definitions/bo3.TournamentSquad"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentStage": {
+      "properties": {
+        "end_date": {
+          "type": "string"
+        },
+        "format_type": {
+          "example": "group",
+          "type": "string"
+        },
+        "id": {
+          "example": 11026,
+          "type": "integer"
+        },
+        "sequence": {
+          "example": 1,
+          "type": "integer"
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "status": {
+          "example": "current",
+          "type": "string"
+        },
+        "title": {
+          "example": "PGL Masters Bucharest 2026 Group Stage",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentStagesResponse": {
+      "properties": {
+        "count": {
+          "example": 3,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "game": {
+          "example": "cs2",
+          "type": "string"
+        },
+        "slug": {
+          "example": "pgl-masters-bucharest-2026",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "stages": {
+          "items": {
+            "$ref": "#/definitions/bo3.StageRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TournamentTeam": {
+      "properties": {
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Spirit",
+          "type": "string"
+        },
+        "place": {
+          "type": "string"
+        },
+        "prize_usd": {
+          "type": "integer"
+        },
+        "slug": {
+          "example": "spirit",
+          "type": "string"
+        },
+        "team_id": {
+          "example": 654,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TransferRow": {
+      "properties": {
+        "action": {
+          "enum": [
+            "join",
+            "change",
+            "leave"
+          ],
+          "example": "leave",
+          "type": "string"
+        },
+        "action_code": {
+          "example": 3,
+          "type": "integer"
+        },
+        "compensation": {
+          "type": "string"
+        },
+        "date": {
+          "example": "2026-07-27",
+          "type": "string"
+        },
+        "from": {
+          "$ref": "#/definitions/bo3.TransferTeam"
+        },
+        "game": {
+          "example": "valorant",
+          "type": "string"
+        },
+        "id": {
+          "example": 252309,
+          "type": "integer"
+        },
+        "is_coach": {
+          "example": false,
+          "type": "boolean"
+        },
+        "nickname": {
+          "example": "BlackWiz",
+          "type": "string"
+        },
+        "player_id": {
+          "example": 42611,
+          "type": "integer"
+        },
+        "player_slug": {
+          "example": "blackwiz",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "to": {
+          "$ref": "#/definitions/bo3.TransferTeam"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TransferTeam": {
+      "properties": {
+        "id": {
+          "example": 667,
+          "type": "integer"
+        },
+        "name": {
+          "example": "Vitality",
+          "type": "string"
+        },
+        "slug": {
+          "example": "vitality",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.TransfersResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "total": {
+          "example": 136070,
+          "type": "integer"
+        },
+        "transfers": {
+          "items": {
+            "$ref": "#/definitions/bo3.TransferRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.ValorantLeaderboardResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-10-28T10:00:00Z",
+          "type": "string"
+        },
+        "from": {
+          "example": "2026-04-28",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "min_games_count": {
+          "example": 43,
+          "type": "integer"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "order": {
+          "enum": [
+            "desc",
+            "asc"
+          ],
+          "example": "desc",
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/bo3.ValorantPlayer"
+          },
+          "type": "array"
+        },
+        "sort": {
+          "enum": [
+            "acs",
+            "kills",
+            "deaths",
+            "damage",
+            "assists",
+            "first_kills",
+            "clutches",
+            "first_duels",
+            "games",
+            "rounds"
+          ],
+          "example": "acs",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://bo3.gg/matches/current",
+          "type": "string"
+        },
+        "to": {
+          "example": "2026-10-28",
+          "type": "string"
+        },
+        "total": {
+          "example": 1351,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "bo3.ValorantPlayer": {
+      "properties": {
+        "games": {
+          "example": 47,
+          "type": "integer"
+        },
+        "nickname": {
+          "example": "kozzy",
+          "type": "string"
+        },
+        "player_id": {
+          "example": 82164,
+          "type": "integer"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "rounds": {
+          "example": 1004,
+          "type": "integer"
+        },
+        "slug": {
+          "example": "kozzy",
+          "type": "string"
+        },
+        "stats": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "api.crawlora.net",
+  "info": {
+    "contact": {
+      "email": "support@crawlora.net",
+      "name": "API Support",
+      "url": "https://crawlora.net"
+    },
+    "description": "Crawlora is a hosted web-data and SERP API: call documented REST endpoints and get normalized JSON instead of HTML to parse — across search/SERP, maps and local, e-commerce, app stores, social, media and finance. One API key; Crawlora runs the proxy rotation, headless browsers and parsing behind the scenes. Billed pay-on-success: charged only on a successful 2xx response, 1-10 credits per call, with a free tier of 2,000 credits per month and no card. A hosted MCP server (mcp.crawlora.net/mcp) exposes the same catalog as agent tools. Search endpoints accept `q` as a universal alias for whichever search-term parameter they document (`query`, `term`, `keyword`, or Amazon's `k`), so one parameter name works across the whole catalog; an explicitly supplied documented name always wins.",
+    "license": {
+      "name": "Crawlora Terms of Service",
+      "url": "https://crawlora.net/terms"
+    },
+    "termsOfService": "https://crawlora.net/terms",
+    "title": "Crawlora API",
+    "version": "1.2",
+    "x-logo": {
+      "altText": "Crawlora",
+      "backgroundColor": "#FFFFFF",
+      "url": "https://raw.githubusercontent.com/Crawlora-org/crawlora-mcp/main/assets/logo-400x400.png"
+    }
+  },
+  "paths": {
+    "/bo3/economy-baseline": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the site-wide CS2 round win rate for every pairing of buy levels (rounds, wins, win rate), the baseline to compare a team's `economy` view of bo3-team-stats with. Levels: -1 full eco, 0 semi-eco, 1 half buy, 2 full buy; the opposing level is null when it is unknown.",
+        "operationId": "bo3-economy-baseline",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.EconomyBaselineResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg CS2 economy baseline",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/forum": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg forum threads for one game with paging: a `category` id from bo3-forum-categories and `sort` (`activity` with pinned threads first, `newest`, `comments`, `rating`), up to 100 per page. Each thread has slug, title, category, comment count, rating, pinned flag, created and last-activity times and the author's nickname; post bodies, reactions and replies are not returned.",
+        "operationId": "bo3-forum",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "description": "Forum category id from bo3-forum-categories, for example 4",
+            "in": "query",
+            "minimum": 1,
+            "name": "category",
+            "type": "integer"
+          },
+          {
+            "description": "Order; one of activity, newest, comments, rating; defaults to activity",
+            "enum": [
+              "activity",
+              "newest",
+              "comments",
+              "rating"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.ForumFeedResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg forum threads with category and sort filters",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/forum-categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the BO3.gg forum categories of one game (id, slug and title, ordered by id; CS2 has CS2, IDEAS AND BUGS and OFF TOP) that the `category` filter of bo3-forum accepts.",
+        "operationId": "bo3-forum-categories",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.ForumCategoriesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg forum categories",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/match": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one BO3.gg match by slug: teams with scores and winner, status, best-of, tier, start and end time, tournament, stage and round, the maps played with scores, the site's AI prediction, live and recorded streams and the key-fact insights for each team. The slug comes from bo3-match-history.",
+        "operationId": "bo3-match",
+        "parameters": [
+          {
+            "description": "Match slug from bo3-match-history, for example vitality-vs-natus-vincere-27-10-2026",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "vitality-vs-natus-vincere-27-10-2026"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.MatchInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg match detail",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/match-games": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the maps of one BO3.gg match with round-by-round results: for each map the number, map name, state, start, duration in seconds, final score, per-half side results (CT or T score, overtime) and every round with its number, duration, end reason, winning side and running score. A match with no maps yet returns an empty list.",
+        "operationId": "bo3-match-games",
+        "parameters": [
+          {
+            "description": "Numeric BO3 match id (the id of a bo3-match-history row)",
+            "in": "query",
+            "minimum": 1,
+            "name": "match_id",
+            "required": true,
+            "type": "integer",
+            "x-example": 132243
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.MatchGamesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg esports match maps with round-by-round results",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/match-history": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg's esports match history for one game, newest first by default, with paging and filters: `status` (`finished`, `defwin`, `upcoming`, `current`, `canceled`, `postponed`; the default is finished and default-win matches together), `tier` (`s` to `d`), an inclusive `from`/`to` day range (UTC), `sort` and `offset`/`limit` (up to 100 per page). Each match has teams, scores, winner, best-of, tournament, maps and the site's AI prediction; `total` and `has_more` page through the full history.",
+        "operationId": "bo3-match-history",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "description": "Match status; one of finished, defwin, upcoming, current, canceled, postponed; defaults to finished and defwin together",
+            "enum": [
+              "finished",
+              "defwin",
+              "upcoming",
+              "current",
+              "canceled",
+              "postponed"
+            ],
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Tournament tier; one of s, a, b, c, d",
+            "enum": [
+              "s",
+              "a",
+              "b",
+              "c",
+              "d"
+            ],
+            "in": "query",
+            "name": "tier",
+            "type": "string"
+          },
+          {
+            "description": "First start day, YYYY-MM-DD (UTC, inclusive)",
+            "in": "query",
+            "name": "from",
+            "type": "string",
+            "x-example": "2026-10-01"
+          },
+          {
+            "description": "Last start day, YYYY-MM-DD (UTC, inclusive)",
+            "in": "query",
+            "name": "to",
+            "type": "string",
+            "x-example": "2026-10-27"
+          },
+          {
+            "description": "Order by start time; one of newest, oldest; defaults to newest",
+            "enum": [
+              "newest",
+              "oldest"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.MatchHistoryResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg esports match history",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/match-players": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns every player's statistics for one BO3.gg match, ordered by team then nickname: kills, deaths, assists, headshots, first kills and deaths, trades, KAST, rating, ADR, damage, utility and money figures as a numeric `stats` map, plus the multikill counts (2K to 5K), team and opponent. The match slug comes from bo3-match-history.",
+        "operationId": "bo3-match-players",
+        "parameters": [
+          {
+            "description": "Match slug from bo3-match-history, for example vitality-vs-natus-vincere-27-10-2026",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "vitality-vs-natus-vincere-27-10-2026"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.MatchPlayersResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg per-player match statistics",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/news-categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the BO3.gg editorial categories (id and title, sorted by title: Analytics, Article, Blog, Events, Gaming, Guides, Highlights, Interviews, News, Predictions, Results, Streams, Tips, Transfers, Wiki) accepted by the `category` filter of bo3-news-feed.",
+        "operationId": "bo3-news-categories",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.NewsCategoriesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg news categories",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/news-feed": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg's editorial feed for one game with paging and filters: `section` (`news`, `article`, `wiki`, `predictions`, `reviews`), a `locale` (16 languages, `en` by default), a `category` id from bo3-news-categories and `sort` (`newest`, `oldest`), up to 100 per page. Each item has slug, title, description, category, publish time, author, tags, image and canonical URL; `total` and `has_more` page through the archive (over 100,000 items across games).",
+        "operationId": "bo3-news-feed",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb, games (general gaming news); defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb",
+              "games"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "description": "Editorial section; one of news, article, wiki, predictions, reviews (game reviews, game=games only); defaults to news",
+            "enum": [
+              "news",
+              "article",
+              "wiki",
+              "predictions",
+              "reviews"
+            ],
+            "in": "query",
+            "name": "section",
+            "type": "string"
+          },
+          {
+            "description": "Tag slug such as team-liquid or pgl-masters-bucharest-2026 (team, player, tournament or topic tag); an unknown tag returns an empty list",
+            "in": "query",
+            "name": "tag",
+            "type": "string",
+            "x-example": "team-liquid"
+          },
+          {
+            "description": "Language of the items; one of en, ru, pt, es, de, fr, tr, pl, id, vi, ja, ko, ua, ms, tl, da; defaults to en",
+            "enum": [
+              "en",
+              "ru",
+              "pt",
+              "es",
+              "de",
+              "fr",
+              "tr",
+              "pl",
+              "id",
+              "vi",
+              "ja",
+              "ko",
+              "ua",
+              "ms",
+              "tl",
+              "da"
+            ],
+            "in": "query",
+            "name": "locale",
+            "type": "string"
+          },
+          {
+            "description": "Category id from bo3-news-categories, for example 38 (Predictions)",
+            "in": "query",
+            "minimum": 1,
+            "name": "category",
+            "type": "integer"
+          },
+          {
+            "description": "Order by publish time; one of newest, oldest; defaults to newest",
+            "enum": [
+              "newest",
+              "oldest"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.NewsFeedResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg news, articles, wiki and predictions feed",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a BO3.gg player profile by slug: nickname, name, game, birthday, role, coach flag, country, current team and join date, six-month average rating, career prize money, social links, former names and tournament achievements newest first. Use `game` to insist on one game; a player of another game is not found.",
+        "operationId": "bo3-player",
+        "parameters": [
+          {
+            "description": "Player slug, for example donk",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "donk"
+          },
+          {
+            "description": "Game the player must belong to; one of cs2, valorant, lol, dota2, r6siege, mlbb",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.PlayerInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg player profile",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/player-leaderboard": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg's CS2 player leaderboard over a day range (default: the last six months): players ranked by `sort` (`rating`, `kd`, `kills`, `damage`, `assists`, `headshots`, `games`, `rounds`) in `order` (`desc`, `asc`), optionally limited to games at one tournament `tier` (`s` to `d`), with paging. Each player has team, games, rounds and every per-game average as a `stats` map; players below the API's minimum-games threshold for the window are excluded (`min_games_count`). CS2 only.",
+        "operationId": "bo3-player-leaderboard",
+        "parameters": [
+          {
+            "description": "First day, YYYY-MM-DD (UTC); defaults to six months before to",
+            "in": "query",
+            "name": "from",
+            "type": "string",
+            "x-example": "2026-04-28"
+          },
+          {
+            "description": "Last day, YYYY-MM-DD (UTC); defaults to today",
+            "in": "query",
+            "name": "to",
+            "type": "string",
+            "x-example": "2026-10-28"
+          },
+          {
+            "description": "Tournament tier of the games counted; one of s, a, b, c, d",
+            "enum": [
+              "s",
+              "a",
+              "b",
+              "c",
+              "d"
+            ],
+            "in": "query",
+            "name": "tier",
+            "type": "string"
+          },
+          {
+            "description": "Stat to rank by; one of rating, kd, kills, damage, assists, headshots, games, rounds; defaults to rating",
+            "enum": [
+              "rating",
+              "kd",
+              "kills",
+              "damage",
+              "assists",
+              "headshots",
+              "games",
+              "rounds"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Direction; one of desc, asc; defaults to desc",
+            "enum": [
+              "desc",
+              "asc"
+            ],
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.LeaderboardResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg CS2 player leaderboard",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/player-recent-matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a CS2 player's newest matches (up to 30) with the opponent, the tournament, the rounds played, each map in order with whether the player's team won it, and the player's own line for the match (rating, kills, deaths, assists, damage, first kills and deaths, trade kills and deaths, headshots, hits, shots, accuracy, money saved and equipment value). Filter by `opponent` or `tournament`. Date windows are not supported upstream; the list does not page past 30.",
+        "operationId": "bo3-player-recent-matches",
+        "parameters": [
+          {
+            "description": "Player slug, for example donk",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "donk"
+          },
+          {
+            "description": "Opposing team slug, for example mouz-cs2",
+            "in": "query",
+            "name": "opponent",
+            "type": "string"
+          },
+          {
+            "description": "Tournament slug from bo3-tournaments",
+            "in": "query",
+            "name": "tournament",
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Newest matches to return, 1 to 30, default 10",
+            "in": "query",
+            "maximum": 30,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.RecentMatchesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg player recent matches",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/player-stats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one statistics view of a BO3.gg player over a day range (default: the last six months): `general` (match, game, round, kill, death, assist and damage totals), `maps` (rating, kills and damage per map) or `accuracy` (hits, damage and kills by hit group). General views fill `stats`; the other views fill `rows`.",
+        "operationId": "bo3-player-stats",
+        "parameters": [
+          {
+            "description": "Player slug, for example donk",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "donk"
+          },
+          {
+            "description": "Statistics view; one of general, maps, accuracy; defaults to general",
+            "enum": [
+              "general",
+              "maps",
+              "accuracy"
+            ],
+            "in": "query",
+            "name": "kind",
+            "type": "string"
+          },
+          {
+            "description": "First day, YYYY-MM-DD; defaults to six months before to",
+            "in": "query",
+            "name": "from",
+            "type": "string",
+            "x-example": "2026-04-28"
+          },
+          {
+            "description": "Last day, YYYY-MM-DD; defaults to today (UTC)",
+            "in": "query",
+            "name": "to",
+            "type": "string",
+            "x-example": "2026-10-28"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.StatsResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg player statistics",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/records": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg's CS2 records (standout single-game and single-round performances such as best shots accuracy, clutches, multikills, damage, win streaks) with paging. Scope them to one `match`, `tournament`, `team` or `player` slug, filter by `record_type` (for example `game_player_headshots`), restrict the game day range with `from`/`to`, and order `newest` or `oldest`. Unscoped requests cover the last six months; each record has its value, unit, side, map, round, player, team and opponents.",
+        "operationId": "bo3-records",
+        "parameters": [
+          {
+            "description": "First day, YYYY-MM-DD (UTC); unscoped default is six months before to",
+            "in": "query",
+            "name": "from",
+            "type": "string",
+            "x-example": "2026-04-28"
+          },
+          {
+            "description": "Last day, YYYY-MM-DD (UTC); unscoped default is today",
+            "in": "query",
+            "name": "to",
+            "type": "string",
+            "x-example": "2026-10-28"
+          },
+          {
+            "description": "Record type such as game_player_headshots or game_round_player_clutch; the types present are listed in the response",
+            "in": "query",
+            "name": "record_type",
+            "type": "string"
+          },
+          {
+            "description": "Match slug to scope the records to one match",
+            "in": "query",
+            "name": "match",
+            "type": "string",
+            "x-example": "vitality-vs-natus-vincere-27-10-2026"
+          },
+          {
+            "description": "Tournament slug to scope the records to one tournament",
+            "in": "query",
+            "name": "tournament",
+            "type": "string",
+            "x-example": "pgl-masters-bucharest-2026"
+          },
+          {
+            "description": "Team slug to scope the records to one team",
+            "in": "query",
+            "name": "team",
+            "type": "string",
+            "x-example": "vitality"
+          },
+          {
+            "description": "Player slug to scope the records to one player",
+            "in": "query",
+            "name": "player",
+            "type": "string",
+            "x-example": "donk"
+          },
+          {
+            "description": "Order by game time; one of newest, oldest; defaults to newest",
+            "enum": [
+              "newest",
+              "oldest"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.RecordsFeedResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg CS2 records with scope and type filters",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/team": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a BO3.gg team profile by slug: name, acronym, game, world rank and rank change, country and region, founding date, six-month earnings, logo, social links, former names, the current roster (nickname, name, birthday, six-month rating) and the team's tournament achievements, newest first. Use `game` to insist on one game; a team of another game is not found.",
+        "operationId": "bo3-team",
+        "parameters": [
+          {
+            "description": "Team slug, for example vitality",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "vitality"
+          },
+          {
+            "description": "Game the team must belong to; one of cs2, valorant, lol, dota2, r6siege, mlbb",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TeamInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg team profile",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/team-prize-money": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg's teams ranked by the prize money they won in tournaments that ended inside a day range (default: the last six months), for one game with paging up to 100 per page. Each team has its prize money in USD, tournament wins, country and region and its current roster with each player's career prize money and six-month rating. `total` and `has_more` page through all teams that earned money in the window.",
+        "operationId": "bo3-team-prize-money",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "description": "First day, YYYY-MM-DD (UTC); defaults to six months before to",
+            "in": "query",
+            "name": "from",
+            "type": "string",
+            "x-example": "2026-04-28"
+          },
+          {
+            "description": "Last day, YYYY-MM-DD (UTC); defaults to today",
+            "in": "query",
+            "name": "to",
+            "type": "string",
+            "x-example": "2026-10-28"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TeamPrizeMoneyResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg team prize money by period",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/team-ranking-dates": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the days for which Valve published an official ranking for a game (newest first) and the region labels BO3.gg accepts for that game's team rankings. Use it to choose `date` and `region` for bo3-team-rankings.",
+        "operationId": "bo3-team-ranking-dates",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TeamRankingDatesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg official ranking dates and regions",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/team-rankings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg's team ranking for a game, worldwide or for one region, for the latest day or any past `date`, paged up to 100 per page. A date that Valve published (listed by bo3-team-ranking-dates) returns the official Valve ranking (`source` `valve_official`, `official` true); other dates return BO3.gg's own daily ranking (`internal`). Rows carry rank, rank change, points, region, country and the five-player roster with ratings.",
+        "operationId": "bo3-team-rankings",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "description": "Region label for the game as listed by bo3-team-ranking-dates, for example Europe; omit for worldwide",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "Ranking day, YYYY-MM-DD; defaults to the latest",
+            "in": "query",
+            "name": "date",
+            "type": "string",
+            "x-example": "2026-10-05"
+          },
+          {
+            "description": "1-based page; defaults to 1",
+            "in": "query",
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 30",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TeamRankingsResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg team rankings, current and historical",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/team-recent-matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a CS2 team's newest matches (up to 30) with, for every match, the opponent, the tournament, the rounds played, each map played in order and every player's line (rating, kills, deaths, assists, damage, first kills and deaths, trade kills and deaths, headshots, hits, shots, accuracy, money saved and equipment value). Filter by `opponent` for head-to-head history or by `tournament` for one event. Date windows are not supported upstream; the newest matches come first and the list does not page past 30.",
+        "operationId": "bo3-team-recent-matches",
+        "parameters": [
+          {
+            "description": "Team slug, for example vitality",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "vitality"
+          },
+          {
+            "description": "Opposing team slug for head-to-head matches, for example natus-vincere",
+            "in": "query",
+            "name": "opponent",
+            "type": "string"
+          },
+          {
+            "description": "Tournament slug from bo3-tournaments",
+            "in": "query",
+            "name": "tournament",
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Newest matches to return, 1 to 30, default 10",
+            "in": "query",
+            "maximum": 30,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.RecentMatchesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg team recent matches",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/team-stats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one statistics view of a BO3.gg team over a day range (default: the last six months): `general` (match, game, round and kill totals), `advanced` (CT/T, pistol, eco, force and full-buy round records), `accuracy` (hits and damage by hit group), `economy` (win rate by own and enemy economy level) or `map-pool` (maps picked and banned). General views fill `stats`; the other views fill `rows`.",
+        "operationId": "bo3-team-stats",
+        "parameters": [
+          {
+            "description": "Team slug, for example vitality",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "vitality"
+          },
+          {
+            "description": "Statistics view; one of general, advanced, accuracy, economy, map-pool; defaults to general",
+            "enum": [
+              "general",
+              "advanced",
+              "accuracy",
+              "economy",
+              "map-pool"
+            ],
+            "in": "query",
+            "name": "kind",
+            "type": "string"
+          },
+          {
+            "description": "First day, YYYY-MM-DD; defaults to six months before to",
+            "in": "query",
+            "name": "from",
+            "type": "string",
+            "x-example": "2026-04-28"
+          },
+          {
+            "description": "Last day, YYYY-MM-DD; defaults to today (UTC)",
+            "in": "query",
+            "name": "to",
+            "type": "string",
+            "x-example": "2026-10-28"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.StatsResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg team statistics",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/tournament": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one BO3.gg tournament by slug: name, status, tier, event type, prize pool, dates, description, series, host city, country and region, its stages (format, status, dates), the prize distribution by place and the participating teams with their placement and prize money. The slug comes from bo3-tournaments.",
+        "operationId": "bo3-tournament",
+        "parameters": [
+          {
+            "description": "Tournament slug from bo3-tournaments, for example pgl-masters-bucharest-2026",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "pgl-masters-bucharest-2026"
+          },
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TournamentInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg tournament detail",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/tournament-map-pool": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the maps played at a CS2 tournament: games and rounds per map, CT-side and T-side round wins with the CT win percentage, and picked and banned counts. The upstream returns the whole event and ignores stage filters.",
+        "operationId": "bo3-tournament-map-pool",
+        "parameters": [
+          {
+            "description": "CS2 tournament slug from bo3-tournaments, for example pgl-masters-bucharest-2026",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "pgl-masters-bucharest-2026"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TournamentMapPoolResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg CS2 tournament map pool",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/tournament-mvps": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the tournament most-valuable-player awards BO3.gg publishes, newest first, optionally for one game: the award type, tournament, player, team and the BO3 article about it. Every row seen has the type `mvp`.",
+        "operationId": "bo3-tournament-mvps",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to every game",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TournamentMVPsResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg esports tournament MVPs",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/tournament-squads": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns every team's squad at a CS2 tournament as it played there: team, and each player with nickname, name, photo, coach flag and stand-in flag. Use it to see who actually played, including substitutes.",
+        "operationId": "bo3-tournament-squads",
+        "parameters": [
+          {
+            "description": "CS2 tournament slug from bo3-tournaments, for example pgl-masters-bucharest-2026",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "pgl-masters-bucharest-2026"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TournamentSquadsResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg CS2 tournament squads",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/tournament-stages": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the stages of one BO3.gg tournament in order: title, format type (for example `group` or `playoff`), whether it is on hold, promotion team count and dates. An unknown tournament slug returns 404.",
+        "operationId": "bo3-tournament-stages",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "description": "Tournament slug from bo3-tournaments, for example pgl-masters-bucharest-2026",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "pgl-masters-bucharest-2026"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TournamentStagesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg esports tournament stages",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/tournaments": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg esports tournaments for one game with paging and filters: `status` (`current`, `upcoming`, `finished`, `canceled`, `postponed`), `tier` (`s` to `d`), `event_type` (`lan`, `online`) and `sort` (`newest`, `oldest`, `prize` for the largest prize pool first), up to 100 per page. Each tournament has its slug, name, status, tier, event type, prize pool in USD, dates and image; `total` and `has_more` page through the full list (over 3,000 CS2 events).",
+        "operationId": "bo3-tournaments",
+        "parameters": [
+          {
+            "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+            "enum": [
+              "cs2",
+              "valorant",
+              "lol",
+              "dota2",
+              "r6siege",
+              "mlbb"
+            ],
+            "in": "query",
+            "name": "game",
+            "type": "string"
+          },
+          {
+            "description": "Tournament status; one of current, upcoming, finished, canceled, postponed",
+            "enum": [
+              "current",
+              "upcoming",
+              "finished",
+              "canceled",
+              "postponed"
+            ],
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Tournament tier; one of s, a, b, c, d",
+            "enum": [
+              "s",
+              "a",
+              "b",
+              "c",
+              "d"
+            ],
+            "in": "query",
+            "name": "tier",
+            "type": "string"
+          },
+          {
+            "description": "Event type; one of lan, online",
+            "enum": [
+              "lan",
+              "online"
+            ],
+            "in": "query",
+            "name": "event_type",
+            "type": "string"
+          },
+          {
+            "description": "Order; one of newest, oldest, prize; defaults to newest",
+            "enum": [
+              "newest",
+              "oldest",
+              "prize"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TournamentListResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg tournament list with filters",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/transfers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg's esports player and coach transfer feed, newest first by default, with paging and filters: `team_id` (moves into or out of one team), `player_id`, `action` (`join`, `change`, `leave`) and `role` (`player`, `coach`). The feed cannot be filtered by game upstream, so every row carries its `game` instead; narrow it with a team or player id.",
+        "operationId": "bo3-transfers",
+        "parameters": [
+          {
+            "description": "BO3 team id; transfers into or out of this team",
+            "in": "query",
+            "minimum": 1,
+            "name": "team_id",
+            "type": "integer"
+          },
+          {
+            "description": "BO3 player id; this person's transfers",
+            "in": "query",
+            "minimum": 1,
+            "name": "player_id",
+            "type": "integer"
+          },
+          {
+            "description": "Transfer action; one of join, change, leave",
+            "enum": [
+              "join",
+              "change",
+              "leave"
+            ],
+            "in": "query",
+            "name": "action",
+            "type": "string"
+          },
+          {
+            "description": "Role; one of player, coach",
+            "enum": [
+              "player",
+              "coach"
+            ],
+            "in": "query",
+            "name": "role",
+            "type": "string"
+          },
+          {
+            "description": "Order by date; one of newest, oldest; defaults to newest",
+            "enum": [
+              "newest",
+              "oldest"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.TransfersResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg esports transfer feed",
+        "tags": [
+          "bo3"
+        ]
+      }
+    },
+    "/bo3/valorant-leaderboard": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns BO3.gg's Valorant player leaderboard over a day range (default: the last six months): players ranked by `sort` (`acs`, `kills`, `deaths`, `damage`, `assists`, `first_kills`, `clutches`, `first_duels`, `games`, `rounds`) in `order` (`desc`, `asc`) with paging. Each player has nickname, slug, games, rounds and every per-round average as a `stats` map; players below the API's minimum-games threshold for the window are excluded (`min_games_count`).",
+        "operationId": "bo3-valorant-leaderboard",
+        "parameters": [
+          {
+            "description": "First day, YYYY-MM-DD (UTC); defaults to six months before to",
+            "in": "query",
+            "name": "from",
+            "type": "string",
+            "x-example": "2026-04-28"
+          },
+          {
+            "description": "Last day, YYYY-MM-DD (UTC); defaults to today",
+            "in": "query",
+            "name": "to",
+            "type": "string",
+            "x-example": "2026-10-28"
+          },
+          {
+            "description": "Stat to rank by; one of acs, kills, deaths, damage, assists, first_kills, clutches, first_duels, games, rounds; defaults to acs",
+            "enum": [
+              "acs",
+              "kills",
+              "deaths",
+              "damage",
+              "assists",
+              "first_kills",
+              "clutches",
+              "first_duels",
+              "games",
+              "rounds"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Direction; one of desc, asc; defaults to desc",
+            "enum": [
+              "desc",
+              "asc"
+            ],
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Zero-based offset; defaults to 0",
+            "in": "query",
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 20",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/bo3.ValorantLeaderboardResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "BO3.gg Valorant player leaderboard",
+        "tags": [
+          "bo3"
+        ]
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "in": "header",
+      "name": "x-api-key",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "name": "bo3"
+    }
+  ]
+}

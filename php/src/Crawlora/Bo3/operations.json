@@ -1,0 +1,2287 @@
+{
+  "platform": "bo3",
+  "operationCount": 28,
+  "operationIds": [
+    "bo3-economy-baseline",
+    "bo3-forum",
+    "bo3-forum-categories",
+    "bo3-match",
+    "bo3-match-games",
+    "bo3-match-history",
+    "bo3-match-players",
+    "bo3-news-categories",
+    "bo3-news-feed",
+    "bo3-player",
+    "bo3-player-leaderboard",
+    "bo3-player-recent-matches",
+    "bo3-player-stats",
+    "bo3-records",
+    "bo3-team",
+    "bo3-team-prize-money",
+    "bo3-team-ranking-dates",
+    "bo3-team-rankings",
+    "bo3-team-recent-matches",
+    "bo3-team-stats",
+    "bo3-tournament",
+    "bo3-tournament-map-pool",
+    "bo3-tournament-mvps",
+    "bo3-tournament-squads",
+    "bo3-tournament-stages",
+    "bo3-tournaments",
+    "bo3-transfers",
+    "bo3-valorant-leaderboard"
+  ],
+  "methods": {
+    "economy_baseline": "bo3-economy-baseline",
+    "forum": "bo3-forum",
+    "forum_categories": "bo3-forum-categories",
+    "match": "bo3-match",
+    "match_games": "bo3-match-games",
+    "match_history": "bo3-match-history",
+    "match_players": "bo3-match-players",
+    "news_categories": "bo3-news-categories",
+    "news_feed": "bo3-news-feed",
+    "player": "bo3-player",
+    "player_leaderboard": "bo3-player-leaderboard",
+    "player_recent_matches": "bo3-player-recent-matches",
+    "player_stats": "bo3-player-stats",
+    "records": "bo3-records",
+    "team": "bo3-team",
+    "team_prize_money": "bo3-team-prize-money",
+    "team_ranking_dates": "bo3-team-ranking-dates",
+    "team_rankings": "bo3-team-rankings",
+    "team_recent_matches": "bo3-team-recent-matches",
+    "team_stats": "bo3-team-stats",
+    "tournament": "bo3-tournament",
+    "tournament_map_pool": "bo3-tournament-map-pool",
+    "tournament_mvps": "bo3-tournament-mvps",
+    "tournament_squads": "bo3-tournament-squads",
+    "tournament_stages": "bo3-tournament-stages",
+    "tournaments": "bo3-tournaments",
+    "transfers": "bo3-transfers",
+    "valorant_leaderboard": "bo3-valorant-leaderboard"
+  },
+  "operations": {
+    "bo3-economy-baseline": {
+      "id": "bo3-economy-baseline",
+      "method": "GET",
+      "path": "/bo3/economy-baseline",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-forum": {
+      "id": "bo3-forum",
+      "method": "GET",
+      "path": "/bo3/forum",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        },
+        {
+          "name": "category",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "activity",
+            "newest",
+            "comments",
+            "rating"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "description": "Forum category id from bo3-forum-categories, for example 4",
+          "in": "query",
+          "minimum": 1,
+          "name": "category",
+          "type": "integer"
+        },
+        {
+          "description": "Order; one of activity, newest, comments, rating; defaults to activity",
+          "enum": [
+            "activity",
+            "newest",
+            "comments",
+            "rating"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-forum-categories": {
+      "id": "bo3-forum-categories",
+      "method": "GET",
+      "path": "/bo3/forum-categories",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-match": {
+      "id": "bo3-match",
+      "method": "GET",
+      "path": "/bo3/match",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Match slug from bo3-match-history, for example vitality-vs-natus-vincere-27-10-2026",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "vitality-vs-natus-vincere-27-10-2026"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-match-games": {
+      "id": "bo3-match-games",
+      "method": "GET",
+      "path": "/bo3/match-games",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "match_id",
+          "in": "query",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Numeric BO3 match id (the id of a bo3-match-history row)",
+          "in": "query",
+          "minimum": 1,
+          "name": "match_id",
+          "required": true,
+          "type": "integer",
+          "x-example": 132243
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-match-history": {
+      "id": "bo3-match-history",
+      "method": "GET",
+      "path": "/bo3/match-history",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        },
+        {
+          "name": "status",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "finished",
+            "defwin",
+            "upcoming",
+            "current",
+            "canceled",
+            "postponed"
+          ]
+        },
+        {
+          "name": "tier",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        },
+        {
+          "name": "from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "newest",
+            "oldest"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "description": "Match status; one of finished, defwin, upcoming, current, canceled, postponed; defaults to finished and defwin together",
+          "enum": [
+            "finished",
+            "defwin",
+            "upcoming",
+            "current",
+            "canceled",
+            "postponed"
+          ],
+          "in": "query",
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "description": "Tournament tier; one of s, a, b, c, d",
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "in": "query",
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "description": "First start day, YYYY-MM-DD (UTC, inclusive)",
+          "in": "query",
+          "name": "from",
+          "type": "string",
+          "x-example": "2026-10-01"
+        },
+        {
+          "description": "Last start day, YYYY-MM-DD (UTC, inclusive)",
+          "in": "query",
+          "name": "to",
+          "type": "string",
+          "x-example": "2026-10-27"
+        },
+        {
+          "description": "Order by start time; one of newest, oldest; defaults to newest",
+          "enum": [
+            "newest",
+            "oldest"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-match-players": {
+      "id": "bo3-match-players",
+      "method": "GET",
+      "path": "/bo3/match-players",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Match slug from bo3-match-history, for example vitality-vs-natus-vincere-27-10-2026",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "vitality-vs-natus-vincere-27-10-2026"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-news-categories": {
+      "id": "bo3-news-categories",
+      "method": "GET",
+      "path": "/bo3/news-categories",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-news-feed": {
+      "id": "bo3-news-feed",
+      "method": "GET",
+      "path": "/bo3/news-feed",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb",
+            "games"
+          ]
+        },
+        {
+          "name": "section",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "news",
+            "article",
+            "wiki",
+            "predictions",
+            "reviews"
+          ]
+        },
+        {
+          "name": "tag",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "locale",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "en",
+            "ru",
+            "pt",
+            "es",
+            "de",
+            "fr",
+            "tr",
+            "pl",
+            "id",
+            "vi",
+            "ja",
+            "ko",
+            "ua",
+            "ms",
+            "tl",
+            "da"
+          ]
+        },
+        {
+          "name": "category",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "newest",
+            "oldest"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb, games (general gaming news); defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb",
+            "games"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "description": "Editorial section; one of news, article, wiki, predictions, reviews (game reviews, game=games only); defaults to news",
+          "enum": [
+            "news",
+            "article",
+            "wiki",
+            "predictions",
+            "reviews"
+          ],
+          "in": "query",
+          "name": "section",
+          "type": "string"
+        },
+        {
+          "description": "Tag slug such as team-liquid or pgl-masters-bucharest-2026 (team, player, tournament or topic tag); an unknown tag returns an empty list",
+          "in": "query",
+          "name": "tag",
+          "type": "string",
+          "x-example": "team-liquid"
+        },
+        {
+          "description": "Language of the items; one of en, ru, pt, es, de, fr, tr, pl, id, vi, ja, ko, ua, ms, tl, da; defaults to en",
+          "enum": [
+            "en",
+            "ru",
+            "pt",
+            "es",
+            "de",
+            "fr",
+            "tr",
+            "pl",
+            "id",
+            "vi",
+            "ja",
+            "ko",
+            "ua",
+            "ms",
+            "tl",
+            "da"
+          ],
+          "in": "query",
+          "name": "locale",
+          "type": "string"
+        },
+        {
+          "description": "Category id from bo3-news-categories, for example 38 (Predictions)",
+          "in": "query",
+          "minimum": 1,
+          "name": "category",
+          "type": "integer"
+        },
+        {
+          "description": "Order by publish time; one of newest, oldest; defaults to newest",
+          "enum": [
+            "newest",
+            "oldest"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-player": {
+      "id": "bo3-player",
+      "method": "GET",
+      "path": "/bo3/player",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Player slug, for example donk",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "donk"
+        },
+        {
+          "description": "Game the player must belong to; one of cs2, valorant, lol, dota2, r6siege, mlbb",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-player-leaderboard": {
+      "id": "bo3-player-leaderboard",
+      "method": "GET",
+      "path": "/bo3/player-leaderboard",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "tier",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "rating",
+            "kd",
+            "kills",
+            "damage",
+            "assists",
+            "headshots",
+            "games",
+            "rounds"
+          ]
+        },
+        {
+          "name": "order",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "desc",
+            "asc"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "First day, YYYY-MM-DD (UTC); defaults to six months before to",
+          "in": "query",
+          "name": "from",
+          "type": "string",
+          "x-example": "2026-04-28"
+        },
+        {
+          "description": "Last day, YYYY-MM-DD (UTC); defaults to today",
+          "in": "query",
+          "name": "to",
+          "type": "string",
+          "x-example": "2026-10-28"
+        },
+        {
+          "description": "Tournament tier of the games counted; one of s, a, b, c, d",
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "in": "query",
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "description": "Stat to rank by; one of rating, kd, kills, damage, assists, headshots, games, rounds; defaults to rating",
+          "enum": [
+            "rating",
+            "kd",
+            "kills",
+            "damage",
+            "assists",
+            "headshots",
+            "games",
+            "rounds"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string"
+        },
+        {
+          "description": "Direction; one of desc, asc; defaults to desc",
+          "enum": [
+            "desc",
+            "asc"
+          ],
+          "in": "query",
+          "name": "order",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-player-recent-matches": {
+      "id": "bo3-player-recent-matches",
+      "method": "GET",
+      "path": "/bo3/player-recent-matches",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "opponent",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "tournament",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Player slug, for example donk",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "donk"
+        },
+        {
+          "description": "Opposing team slug, for example mouz-cs2",
+          "in": "query",
+          "name": "opponent",
+          "type": "string"
+        },
+        {
+          "description": "Tournament slug from bo3-tournaments",
+          "in": "query",
+          "name": "tournament",
+          "type": "string"
+        },
+        {
+          "default": 10,
+          "description": "Newest matches to return, 1 to 30, default 10",
+          "in": "query",
+          "maximum": 30,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-player-stats": {
+      "id": "bo3-player-stats",
+      "method": "GET",
+      "path": "/bo3/player-stats",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "general",
+            "maps",
+            "accuracy"
+          ]
+        },
+        {
+          "name": "from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Player slug, for example donk",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "donk"
+        },
+        {
+          "description": "Statistics view; one of general, maps, accuracy; defaults to general",
+          "enum": [
+            "general",
+            "maps",
+            "accuracy"
+          ],
+          "in": "query",
+          "name": "kind",
+          "type": "string"
+        },
+        {
+          "description": "First day, YYYY-MM-DD; defaults to six months before to",
+          "in": "query",
+          "name": "from",
+          "type": "string",
+          "x-example": "2026-04-28"
+        },
+        {
+          "description": "Last day, YYYY-MM-DD; defaults to today (UTC)",
+          "in": "query",
+          "name": "to",
+          "type": "string",
+          "x-example": "2026-10-28"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-records": {
+      "id": "bo3-records",
+      "method": "GET",
+      "path": "/bo3/records",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "record_type",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "match",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "tournament",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "team",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "player",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "newest",
+            "oldest"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "First day, YYYY-MM-DD (UTC); unscoped default is six months before to",
+          "in": "query",
+          "name": "from",
+          "type": "string",
+          "x-example": "2026-04-28"
+        },
+        {
+          "description": "Last day, YYYY-MM-DD (UTC); unscoped default is today",
+          "in": "query",
+          "name": "to",
+          "type": "string",
+          "x-example": "2026-10-28"
+        },
+        {
+          "description": "Record type such as game_player_headshots or game_round_player_clutch; the types present are listed in the response",
+          "in": "query",
+          "name": "record_type",
+          "type": "string"
+        },
+        {
+          "description": "Match slug to scope the records to one match",
+          "in": "query",
+          "name": "match",
+          "type": "string",
+          "x-example": "vitality-vs-natus-vincere-27-10-2026"
+        },
+        {
+          "description": "Tournament slug to scope the records to one tournament",
+          "in": "query",
+          "name": "tournament",
+          "type": "string",
+          "x-example": "pgl-masters-bucharest-2026"
+        },
+        {
+          "description": "Team slug to scope the records to one team",
+          "in": "query",
+          "name": "team",
+          "type": "string",
+          "x-example": "vitality"
+        },
+        {
+          "description": "Player slug to scope the records to one player",
+          "in": "query",
+          "name": "player",
+          "type": "string",
+          "x-example": "donk"
+        },
+        {
+          "description": "Order by game time; one of newest, oldest; defaults to newest",
+          "enum": [
+            "newest",
+            "oldest"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-team": {
+      "id": "bo3-team",
+      "method": "GET",
+      "path": "/bo3/team",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Team slug, for example vitality",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "vitality"
+        },
+        {
+          "description": "Game the team must belong to; one of cs2, valorant, lol, dota2, r6siege, mlbb",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-team-prize-money": {
+      "id": "bo3-team-prize-money",
+      "method": "GET",
+      "path": "/bo3/team-prize-money",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        },
+        {
+          "name": "from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "description": "First day, YYYY-MM-DD (UTC); defaults to six months before to",
+          "in": "query",
+          "name": "from",
+          "type": "string",
+          "x-example": "2026-04-28"
+        },
+        {
+          "description": "Last day, YYYY-MM-DD (UTC); defaults to today",
+          "in": "query",
+          "name": "to",
+          "type": "string",
+          "x-example": "2026-10-28"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-team-ranking-dates": {
+      "id": "bo3-team-ranking-dates",
+      "method": "GET",
+      "path": "/bo3/team-ranking-dates",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-team-rankings": {
+      "id": "bo3-team-rankings",
+      "method": "GET",
+      "path": "/bo3/team-rankings",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        },
+        {
+          "name": "region",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "date",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "per_page",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "description": "Region label for the game as listed by bo3-team-ranking-dates, for example Europe; omit for worldwide",
+          "in": "query",
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "description": "Ranking day, YYYY-MM-DD; defaults to the latest",
+          "in": "query",
+          "name": "date",
+          "type": "string",
+          "x-example": "2026-10-05"
+        },
+        {
+          "description": "1-based page; defaults to 1",
+          "in": "query",
+          "minimum": 1,
+          "name": "page",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 30",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "per_page",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-team-recent-matches": {
+      "id": "bo3-team-recent-matches",
+      "method": "GET",
+      "path": "/bo3/team-recent-matches",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "opponent",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "tournament",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Team slug, for example vitality",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "vitality"
+        },
+        {
+          "description": "Opposing team slug for head-to-head matches, for example natus-vincere",
+          "in": "query",
+          "name": "opponent",
+          "type": "string"
+        },
+        {
+          "description": "Tournament slug from bo3-tournaments",
+          "in": "query",
+          "name": "tournament",
+          "type": "string"
+        },
+        {
+          "default": 10,
+          "description": "Newest matches to return, 1 to 30, default 10",
+          "in": "query",
+          "maximum": 30,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-team-stats": {
+      "id": "bo3-team-stats",
+      "method": "GET",
+      "path": "/bo3/team-stats",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "general",
+            "advanced",
+            "accuracy",
+            "economy",
+            "map-pool"
+          ]
+        },
+        {
+          "name": "from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Team slug, for example vitality",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "vitality"
+        },
+        {
+          "description": "Statistics view; one of general, advanced, accuracy, economy, map-pool; defaults to general",
+          "enum": [
+            "general",
+            "advanced",
+            "accuracy",
+            "economy",
+            "map-pool"
+          ],
+          "in": "query",
+          "name": "kind",
+          "type": "string"
+        },
+        {
+          "description": "First day, YYYY-MM-DD; defaults to six months before to",
+          "in": "query",
+          "name": "from",
+          "type": "string",
+          "x-example": "2026-04-28"
+        },
+        {
+          "description": "Last day, YYYY-MM-DD; defaults to today (UTC)",
+          "in": "query",
+          "name": "to",
+          "type": "string",
+          "x-example": "2026-10-28"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-tournament": {
+      "id": "bo3-tournament",
+      "method": "GET",
+      "path": "/bo3/tournament",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Tournament slug from bo3-tournaments, for example pgl-masters-bucharest-2026",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "pgl-masters-bucharest-2026"
+        },
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-tournament-map-pool": {
+      "id": "bo3-tournament-map-pool",
+      "method": "GET",
+      "path": "/bo3/tournament-map-pool",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "CS2 tournament slug from bo3-tournaments, for example pgl-masters-bucharest-2026",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "pgl-masters-bucharest-2026"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-tournament-mvps": {
+      "id": "bo3-tournament-mvps",
+      "method": "GET",
+      "path": "/bo3/tournament-mvps",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to every game",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-tournament-squads": {
+      "id": "bo3-tournament-squads",
+      "method": "GET",
+      "path": "/bo3/tournament-squads",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "CS2 tournament slug from bo3-tournaments, for example pgl-masters-bucharest-2026",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "pgl-masters-bucharest-2026"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-tournament-stages": {
+      "id": "bo3-tournament-stages",
+      "method": "GET",
+      "path": "/bo3/tournament-stages",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        },
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "description": "Tournament slug from bo3-tournaments, for example pgl-masters-bucharest-2026",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "pgl-masters-bucharest-2026"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-tournaments": {
+      "id": "bo3-tournaments",
+      "method": "GET",
+      "path": "/bo3/tournaments",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "game",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ]
+        },
+        {
+          "name": "status",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "current",
+            "upcoming",
+            "finished",
+            "canceled",
+            "postponed"
+          ]
+        },
+        {
+          "name": "tier",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        },
+        {
+          "name": "event_type",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "lan",
+            "online"
+          ]
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "newest",
+            "oldest",
+            "prize"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Game; one of cs2, valorant, lol, dota2, r6siege, mlbb; defaults to cs2",
+          "enum": [
+            "cs2",
+            "valorant",
+            "lol",
+            "dota2",
+            "r6siege",
+            "mlbb"
+          ],
+          "in": "query",
+          "name": "game",
+          "type": "string"
+        },
+        {
+          "description": "Tournament status; one of current, upcoming, finished, canceled, postponed",
+          "enum": [
+            "current",
+            "upcoming",
+            "finished",
+            "canceled",
+            "postponed"
+          ],
+          "in": "query",
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "description": "Tournament tier; one of s, a, b, c, d",
+          "enum": [
+            "s",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "in": "query",
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "description": "Event type; one of lan, online",
+          "enum": [
+            "lan",
+            "online"
+          ],
+          "in": "query",
+          "name": "event_type",
+          "type": "string"
+        },
+        {
+          "description": "Order; one of newest, oldest, prize; defaults to newest",
+          "enum": [
+            "newest",
+            "oldest",
+            "prize"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-transfers": {
+      "id": "bo3-transfers",
+      "method": "GET",
+      "path": "/bo3/transfers",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "team_id",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "player_id",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "action",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "join",
+            "change",
+            "leave"
+          ]
+        },
+        {
+          "name": "role",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "player",
+            "coach"
+          ]
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "newest",
+            "oldest"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "BO3 team id; transfers into or out of this team",
+          "in": "query",
+          "minimum": 1,
+          "name": "team_id",
+          "type": "integer"
+        },
+        {
+          "description": "BO3 player id; this person's transfers",
+          "in": "query",
+          "minimum": 1,
+          "name": "player_id",
+          "type": "integer"
+        },
+        {
+          "description": "Transfer action; one of join, change, leave",
+          "enum": [
+            "join",
+            "change",
+            "leave"
+          ],
+          "in": "query",
+          "name": "action",
+          "type": "string"
+        },
+        {
+          "description": "Role; one of player, coach",
+          "enum": [
+            "player",
+            "coach"
+          ],
+          "in": "query",
+          "name": "role",
+          "type": "string"
+        },
+        {
+          "description": "Order by date; one of newest, oldest; defaults to newest",
+          "enum": [
+            "newest",
+            "oldest"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "bo3-valorant-leaderboard": {
+      "id": "bo3-valorant-leaderboard",
+      "method": "GET",
+      "path": "/bo3/valorant-leaderboard",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "acs",
+            "kills",
+            "deaths",
+            "damage",
+            "assists",
+            "first_kills",
+            "clutches",
+            "first_duels",
+            "games",
+            "rounds"
+          ]
+        },
+        {
+          "name": "order",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "desc",
+            "asc"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "First day, YYYY-MM-DD (UTC); defaults to six months before to",
+          "in": "query",
+          "name": "from",
+          "type": "string",
+          "x-example": "2026-04-28"
+        },
+        {
+          "description": "Last day, YYYY-MM-DD (UTC); defaults to today",
+          "in": "query",
+          "name": "to",
+          "type": "string",
+          "x-example": "2026-10-28"
+        },
+        {
+          "description": "Stat to rank by; one of acs, kills, deaths, damage, assists, first_kills, clutches, first_duels, games, rounds; defaults to acs",
+          "enum": [
+            "acs",
+            "kills",
+            "deaths",
+            "damage",
+            "assists",
+            "first_kills",
+            "clutches",
+            "first_duels",
+            "games",
+            "rounds"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string"
+        },
+        {
+          "description": "Direction; one of desc, asc; defaults to desc",
+          "enum": [
+            "desc",
+            "asc"
+          ],
+          "in": "query",
+          "name": "order",
+          "type": "string"
+        },
+        {
+          "description": "Zero-based offset; defaults to 0",
+          "in": "query",
+          "minimum": 0,
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 20",
+          "in": "query",
+          "maximum": 100,
+          "minimum": 1,
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    }
+  }
+}
